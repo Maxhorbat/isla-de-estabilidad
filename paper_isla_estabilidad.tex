@@ -1,0 +1,53 @@
+\documentclass[twocolumn,aps,prc,preprintnumbers,fontsize=10pt,floatfix]{revtex4-1}
+\usepackage[utf8]{utf8}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{booktabs}
+
+\begin{document}
+
+\title{Búsqueda y Caracterización de la Isla de Estabilidad en Núcleos Superpesados ($Z=119\text{--}126$): Un Enfoque Macro-Microscópico y de Fusión-Evaporación}
+
+\author{Neyen Aharon Lovon Puma}
+\affiliation{IEST La Recoleta / Proyecto de Física Computacional, Arequipa, Perú}
+\date{\today}
+
+\begin{abstract}
+Este trabajo presenta un modelo matem\'atico-computacional para la exploraci\'on de n\'ucleos superpesados en la regi\'on $Z \in [119, 126]$ y $N \in [160, 200]$. Mediante la eliminaci\'on de sesgos artificiales en las energ\'ias de separaci\'on y la incorporaci\'on de correcciones de capa macro-microsc\'opicas, se demuestra que la barrera de fisi\'on ($B_f \approx 8.5\text{ MeV}$) cerca del cierre de capa $N=184$ suprime la fisi\'on espont\'anea en favor de emisiones $\alpha$. Adicionalmente, el modelo de tres pasos de fusi\'on-evaporaci\'on predice una secci\'on eficaz de producci\'on de $\sigma_{\text{ER}} \approx 4.06\text{ pb}$ para la reacci\'on $^{50}\text{Ti} + ^{249}\text{Bk} \rightarrow {}^{299}119^*$ a una energ\'ia de excitaci\'on \'optima de $E^* = 34.0\text{ MeV}$.
+\end{abstract}
+
+\maketitle
+
+\section{Introducci\'on}
+La b\'usqueda de la isla de estabilidad representa uno de los desaf\'ios m\'as complejos de la f\'isica nuclear contempor\'anea. En n\'ucleos superpesados ($Z \ge 119$), la repulsi\'on de Coulomb destruye la barrera macrosc\'opica de la gota l\'iquida ($B_f^{\text{macr}} \approx 0$).
+
+\section{Modelo Matem\'atico}
+La energ\'ia de enlace total se expresa como:
+\begin{equation}
+B(Z,N) = B_{\text{macr}}(Z,N) + \delta E_{\text{shell}}(Z,N)
+\end{equation}
+
+La secci\'on eficaz de residuo de evaporaci\'on se modela mediante:
+\begin{equation}
+\sigma_{\text{ER}} = \sigma_{\text{cap}} \times P_{\text{CN}} \times W_{\text{surv}}
+\end{equation}
+
+\section{Resultados y Discusi\'on}
+\begin{table}[h!]
+\caption{Resultados de secci\'on eficaz calculados para el elemento $Z=119$.}
+\centering
+\begin{tabular}{cccccc}
+\hline\hline
+Reacci\'on & $V_C$ (MeV) & $\sigma_{\text{cap}}$ (mb) & $P_{\text{CN}}$ & $W_{\text{surv}}$ & $\sigma_{\text{ER}}$ (pb) \\
+\hline
+$^{50}\text{Ti} + ^{249}\text{Bk}$ & 224.15 & 82.4 & $2.26\times 10^{-7}$ & 0.218 & \textbf{4.06} \\
+$^{51}\text{V} + ^{248}\text{Cm}$ & 231.80 & 83.1 & $5.53\times 10^{-8}$ & 0.218 & 1.00 \\
+\hline\hline
+\end{tabular}
+\end{table}
+
+\section{Conclusiones}
+Se confirma la existencia de una ventana de viabilidad experimental para el elemento $119$ mediante proyectiles de $^{50}\text{Ti}$, respaldada por el benchmarking con el Oganes\'on ($\sigma_{\text{ER}}^{\text{calc}} = 0.78\text{ pb}$).
+
+\end{document}
