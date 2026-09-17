@@ -76,3 +76,41 @@ def calculate_fusion_cross_section(Z1, A1, Z2, A2, E_star_range=np.linspace(25, 
             "sig_ER_pb": sig_ER_pb
         })
     return pd.DataFrame(filas), V_C
+
+def generate_decay_chain(z_start, n_start, steps=6):
+    """
+    Simula la cadena de desintegración alfa desde un núcleo superpesado inicial.
+    Cada emisión alfa reduce Z en 2 y N en 2 (A en 4).
+    """
+    chain = []
+    z_curr, n_curr = z_start, n_start
+    
+    for i in range(steps):
+        a_curr = z_curr + n_curr
+        b_tot = binding_energy_macro(z_curr, n_curr) + shell_correction(z_curr, n_curr)
+        
+        # Energía Q_alpha
+        b_child = binding_energy_macro(z_curr - 2, n_curr - 2) + shell_correction(z_curr - 2, n_curr - 2)
+        q_alpha = (binding_energy_macro(2, 2) + 28.3) - (b_tot - b_child)
+        
+        # Vida media T_alpha (Viola-Seaborg)
+        log10_Ta = (1.66 * z_curr - 8.5) / np.sqrt(max(0.1, q_alpha)) - 32.0 if q_alpha > 0 else 99.0
+        
+        chain.append({
+            "Paso": i + 1,
+            "Nuclido": f"^{{{a_curr}}}{z_curr}",
+            "Z": z_curr,
+            "N": n_curr,
+            "A": a_curr,
+            "Q_alpha_MeV": round(q_alpha, 2),
+            "log10_Talpha_s": round(log10_Ta, 2),
+            "T_estimada": f"10^({log10_Ta:.1f}) s"
+        })
+        
+        # Siguiente elemento por emisión alfa
+        z_curr -= 2
+        n_curr -= 2
+        if z_curr < 100:
+            break
+            
+    return pd.DataFrame(chain)
